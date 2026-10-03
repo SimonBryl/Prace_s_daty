@@ -11,7 +11,6 @@ groupedData = data.groupby('Publisher')
 bestPublishers = groupedData['Global_Sales'].sum().sort_values(ascending=False).head(5).index.to_list()
 filtredPublishers = data[data['Publisher'].isin(bestPublishers)]
 salesByYear = filtredPublishers.groupby(['Publisher','Year'])['Global_Sales'].sum()
-salesByYear = salesByYear[(salesByYear>0)] 
 dataframeSales = salesByYear.reset_index()
 
 best_years = dataframeSales.loc[dataframeSales.groupby('Publisher')['Global_Sales'].idxmax()]
